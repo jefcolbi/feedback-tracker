@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}All features{% endblock %}
+
+{% block content %}
+<div class="col-md-8">
+    <div class="row">
+        <h1 class="h1">All features</h1>
+    </div>
+
+    <div class="modal fade" id="feature_form" tabindex="-1" aria-labelledby="feature_formLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="feature_formLabel">Create feature</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#feature_form">
+      Create feature
+    </button>
+
+    <div class="row">
+        {% include 'components/feature_table.html' %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+htmx.logAll();
+document.body.addEventListener('htmx:afterSwap', function(evt) {
+    $('#feature_form').modal('hide');
+    $('form').trigger("reset");
+});
+
+</script>
+{% endblock %}

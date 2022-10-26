@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}All tags{% endblock %}
+
+{% block content %}
+<div class="col-md-8">
+    <div class="row">
+        <h1 class="h1">All tags</h1>
+    </div>
+
+    <div class="modal fade" id="tag_form" tabindex="-1" aria-labelledby="tag_formLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="tag_formLabel">Create tag</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#tag_form">
+      Create tag
+    </button>
+
+    <div class="row mt-4">
+        {% include 'components/tag_table.html' %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+htmx.logAll();
+document.body.addEventListener('htmx:afterSwap', function(evt) {
+    $('#tag_form').modal('hide');
+    $('form').trigger("reset");
+});
+
+</script>
+{% endblock %}

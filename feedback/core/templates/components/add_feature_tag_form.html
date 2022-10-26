@@ -1,0 +1,20 @@
+{% load crispy_forms_tags %}
+
+<div class="modal fade" id="feature_{{ feature.id }}_form" tabindex="-1" aria-labelledby="feature_{{ feature.id }}_formLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="feature_{{ feature.id }}_formLabel">Add tag to {{ feature.name }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary py-0 mx-1" data-bs-toggle="modal" data-bs-target="#feature_{{ feature.id }}_form">
+      +tag
+    </button>

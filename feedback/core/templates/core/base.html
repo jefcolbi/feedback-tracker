@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link href="{%  static 'core/css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body class="min-vh-100" >
+    <div class="container-fluid min-vh-100">
+        <div class="row m-3 min-vh-100">
+            <div class="col-md-3 min-vh-100">
+                <ul>
+                    <li><a href="{% url 'feature_list' %}">Features</a></li>
+                    <li><a href="{% url 'tag_list' %}">Tags</a></li>
+                    <li><a href="{% url 'user_list' %}">Users</a></li>
+                </ul>
+            </div>
+
+
+            {% block content %}
+
+            {% endblock %}
+        </div>
+
+    </div>
+
+    <script src="{%  static 'core/js/jquery-3.6.1.min.js' %}"></script>
+    <script src="{%  static 'core/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'htmx/htmx.min.js' %}" ></script>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
